@@ -1,0 +1,30 @@
+version: "3.1"
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_c
+    environment:
+      MYSQL_ROOT_PASSWORD: utec
+    ports:
+      - "8005:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - cientedatos_net
+    restart: always
+  
+  adminer:
+    image: adminer
+    container_name: adminer_c
+    ports:
+      - "8080:8080"
+    networks:
+      - cientedatos_net
+    restart: always
+
+volumes:
+  mysql_data:
+
+networks:
+  cientedatos_net:
+    driver: bridge
